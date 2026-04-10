@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Reservation System</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('640.jpg'); /* Ensure this file is in your folder */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .card { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); 
+            width: 400px; 
+            margin-bottom: 20px;
+        }
+
+        h2, h3 { color: #333; text-align: center; margin-top: 0; }
+
+        input, select { 
+            width: 100%; padding: 12px; margin: 10px 0; 
+            border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; 
+        }
+
+        button { 
+            width: 100%; padding: 12px; border: none; border-radius: 6px;
+            cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+
+        .btn-book { background: #28a745; color: white; }
+        .btn-book:hover { background: #218838; }
+        
+        .btn-refresh { background: #007bff; color: white; margin-top: 10px; }
+        .btn-refresh:hover { background: #0056b3; }
+
+        #status { margin-top: 15px; text-align: center; font-weight: bold; color: #0056b3; }
+
+        .table-container { width: 90%; max-width: 600px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+        th { background: #f8f9fa; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Book Your Ticket</h2>
+        <input type="text" id="userName" placeholder="Your Name">
+        <select id="event">
+            <option value="Movie: Avengers">Movie: Avengers</option>
+            <option value="Concert: Rock Night By Shyam">Concert: Rock Night By Shyam</option>
+            <option value="Movie: Requiem">Movie: Requiem</option>
+            <option value="Movie: Project Hail Mary">Movie: Project Hail Mary</option>
+        </select>
+        <input type="text" id="seat" placeholder="Seat (e.g., A1, B5)">
+        <button class="btn-book" onclick="bookTicket()">Reserve Now</button>
+        <div id="status"></div>
+    </div>
+
+    <div class="table-container">
+        <h3>Live Reservations</h3>
+        <table id="reservationTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Event</th>
+                    <th>Seat</th>
+                </tr>
+            </thead>
+            <tbody id="ticketList">
+                </tbody>
+        </table>
+        <button class="btn-refresh" onclick="fetchReservations()">Refresh Data</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
