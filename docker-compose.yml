@@ -1,0 +1,23 @@
+services:
+  # The Backend Database (Tier 2)
+  database:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # The Web API (Tier 1)
+  web-app:
+    build: .
+    container_name: ticket_app_container
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+    environment:
+      - MONGO_URI=mongodb://database:27017/ticketDB
+
+volumes:
+  mongo_data:
